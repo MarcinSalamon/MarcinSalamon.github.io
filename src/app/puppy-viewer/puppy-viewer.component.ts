@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Kitten } from '../kitten';
 
 @Component({
   selector: 'app-puppy-viewer',
@@ -11,9 +12,7 @@ export class PuppyViewerComponent implements OnInit {
     status: 'fail',
     message: 'https://i.pinimg.com/originals/7b/2f/2f/7b2f2f41abe8c7db22d7f6dae65d24da.jpg'
   };
-  kitty: any = {
-    url: ''
-  };
+
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -25,6 +24,7 @@ export class PuppyViewerComponent implements OnInit {
 
   getKitty() {
     console.log('kitty');
-    this.http.get('https://api.thecatapi.com/v1/images/search').subscribe(kit => this.kitty = kit);
+    this.http.get<Kitten>('https://api.thecatapi.com/v1/images/search').subscribe(kit => {
+       this.puppy.message = kit[0].url; console.log(kit); });
   }
 }
