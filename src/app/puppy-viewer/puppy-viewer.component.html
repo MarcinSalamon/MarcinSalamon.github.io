@@ -1,5 +1,8 @@
 <img src="{{puppy.message}}" alt="">
 <br>
-<button (click)='getPuppy()'>PUPPYYYYY!</button>
-<br>
-<button (click)='getKitty()'>KITTYYYYY!</button>
+<div>
+    <select [(ngModel)]="selected">
+        <option *ngFor="let ani of animals">{{ani}}</option>
+    </select>
+    <button (click)="getFromAPI()">Picture</button>
+</div>
